@@ -21,7 +21,7 @@ class Register extends Component
         return [
             'credentials.name' => ['required', 'string'],
             'credentials.email' => ['required', 'email', 'unique:users,email'],
-            'credentials.username' => ['required', 'email', 'unique:users,username'],
+            'credentials.username' => ['required', 'unique:users,username'],
             'credentials.password' => [
                 'required',
                 'confirmed',
