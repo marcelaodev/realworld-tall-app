@@ -46,17 +46,6 @@
                                 <input type="text" class="form-control" placeholder="Enter new tags" wire:model='tag'>
                                 <button type="button" wire:click="createTag">Create Tag</button>
                             </fieldset>
-                            {{-- <fieldset class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter new tags">
-                                <div class="tag-list">
-                                    @forelse ($tags as $tag)
-                                    <div>{{ $tag->name }}
-                    </div>
-                    @empty
-
-                    @endforelse
-                </div>
-                </fieldset> --}}
 
                 <button class="btn btn-lg pull-xs-right btn-primary" type="button" wire:click='saveArticle'>
                     Save Article
