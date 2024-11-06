@@ -31,17 +31,13 @@
                                     placeholder="Password">
                             </fieldset>
                             @if (session()->has('flash.banner'))
-                            <div class="alert alert-success">
-                                {{ session('flash.banner') }}
-                            </div>
+                                <div class="alert alert-success">
+                                    {{ session('flash.banner') }}
+                                </div>
                             @endif
-                            <button class="btn btn-lg btn-primary pull-xs-right">
+                            <button class="btn btn-lg btn-primary pull-xs-right mx-1">
                                 Update Settings
                             </button>
-                            <a href="{{ route('front.user.show',['user'=>$user['username']]) }}"
-                                class="btn btn-lg btn-outline-secondary pull-xs-right">
-                                View profile
-                            </a>
                         </fieldset>
                     </form>
                 </div>

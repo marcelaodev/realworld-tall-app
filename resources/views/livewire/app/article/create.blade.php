@@ -3,6 +3,7 @@
         <div class="container page">
             <div class="row">
                 <div class="col-md-10 offset-md-1 col-xs-12">
+                    <x-validation-errors />
                     <form>
                         <fieldset>
                             <fieldset class="form-group">
@@ -19,32 +20,36 @@
                             </fieldset>
                             <div class="row">
                                 @forelse ($tags as $tag)
-                                <div wire:key='{{ $tag->id }}' class="col-xs-4 col-md-2">
-                                    <fieldset class="form-group">
-                                        <label for="tag_{{ $tag->slug }}">
-                                            <input id="tag_{{ $tag->slug }}" class="form-checkbox" type="checkbox"
-                                                name="tag" value="{{ $tag->id }}" wire:model='article_tags' />
-                                            {{ $tag->name }}
-                                        </label>
-                                    </fieldset>
-                                </div>
+                                    <div wire:key='{{ $tag->id }}' class="col-xs-4 col-md-2">
+                                        <fieldset class="form-group">
+                                            <label for="tag_{{ $tag->slug }}">
+                                                <input id="tag_{{ $tag->slug }}" class="form-checkbox" type="checkbox"
+                                                    name="tag" value="{{ $tag->id }}" wire:model='article_tags' />
+                                                {{ $tag->name }}
+                                            </label>
+                                        </fieldset>
+                                    </div>
                                 @empty
 
                                 @endforelse
                             </div>
                             <fieldset class="form-group">
                                 @if (session()->has('message-tag'))
-                                <div class="alert alert-success">
-                                    {{ session('message-tag') }}
-                                </div>
+                                    <div class="alert alert-success">
+                                        {{ session('message-tag') }}
+                                    </div>
                                 @endif
-                                <input type="text" class="form-control" placeholder="Enter tags" wire:model="tag">
-                                <button type="button" wire:click="createTag">Create Tag</button>
+                                <input type="text" class="form-control" placeholder="Enter new tag" wire:model="tag">
+                                <button class="btn btn-secondary my-2" type="button" wire:click="createTag">Create
+                                    Tag</button>
                                 <div class="tag-list"></div>
                             </fieldset>
                             <button class="btn btn-lg pull-xs-right btn-primary" type="button" wire:click='saveArticle'>
                                 Publish Article
                             </button>
+                            <a class="btn btn-lg pull-xs-right btn-secondary mx-1" href="{{ route('front.index') }}">
+                                Cancel
+                            </a>
                         </fieldset>
                     </form>
                 </div>

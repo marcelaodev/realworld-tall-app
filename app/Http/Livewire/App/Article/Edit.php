@@ -29,6 +29,7 @@ class Edit extends Component
         'article.title' => ['required', 'string'],
         'article.body' => ['required', 'string'],
         'article.description' => ['string'],
+        'article_tags' => []
     ];
 
     public function render()
@@ -48,14 +49,7 @@ class Edit extends Component
 
         session()->flash('flash.banner', 'Your article has been saved!');
 
-        return redirect()->route('app.article.edit', ['article' => $this->article->id]);
-    }
-
-    public function deleteArticle()
-    {
-        $this->article->delete();
-
-        return redirect()->route('front.index');
+        return redirect()->route('front.article.show', ['article' => $this->article->slug]);
     }
 
     public function createTag()
@@ -70,7 +64,7 @@ class Edit extends Component
 
         $this->validate(['tag' => ['required']]);
 
-        if (! empty($this->tag)) {
+        if (!empty($this->tag)) {
             \App\Models\Tag::create(['name' => $this->tag]);
 
             $this->reset('tag');

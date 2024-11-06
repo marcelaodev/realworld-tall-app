@@ -79,4 +79,15 @@ class Show extends Component
 
         $this->article = \App\Models\Article::find($this->article->id);
     }
+
+    public function deleteArticle()
+    {
+        $this->article->tags()->detach();
+        $this->article->comments()->delete();
+        $this->article->delete();
+
+        session()->flash('flash.banner', 'Successfully deleted your article.');
+
+        return redirect()->route('front.index');
+    }
 }

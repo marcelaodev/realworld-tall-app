@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App;
 
 use Artesaos\SEOTools\Facades\SEOTools;
+use Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
@@ -21,7 +22,7 @@ class Register extends Component
         return [
             'credentials.name' => ['required', 'string'],
             'credentials.email' => ['required', 'email', 'unique:users,email'],
-            'credentials.username' => ['required', 'email', 'unique:users,username'],
+            'credentials.username' => ['required', 'unique:users,username'],
             'credentials.password' => [
                 'required',
                 'confirmed',
@@ -52,7 +53,7 @@ class Register extends Component
         $user = \App\Models\User::create([
             'name' => $this->credentials['name'],
             'username' => $this->credentials['username'],
-            'password' => $this->credentials['password'],
+            'password' => Hash::make($this->credentials['password']),
             'email' => $this->credentials['email'],
         ]);
 

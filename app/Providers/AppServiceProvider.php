@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Menu::macro('app', function () {
             return Menu::new()
-                ->addClass('nav navbar-nav pull-xs-right')
+                ->addClass('nav navbar-nav flex-row')
                 ->add(Link::to(route('front.index'), 'Home'))
                 ->addIf(
                     auth()->check(),
@@ -50,26 +50,33 @@ class AppServiceProvider extends ServiceProvider
                 ->addIf(
                     auth()->check(),
                     Link::to(
+                        route('front.user.show', ['user' => auth()->user()?->username ?? 1]),
+                        Html::raw('<i class="ion-person"></i>&nbsp;Profile')->render()
+                    )
+                )
+                ->addIf(
+                    auth()->check(),
+                    Link::to(
                         route('app.setting'),
                         Html::raw('<i class="ion-gear-a"></i>&nbsp;Settings')->render()
                     )
                 )
                 ->addIf(
                     auth()->check(),
-                    Html::raw('<form id="logout" method="POST" action="'.route('logout').'">
+                    Html::raw('<form id="logout" method="POST" action="' . route('logout') . '">
                             <a href="#" class="nav-link" onclick="event.preventDefault();this.closest(`form`).submit()">
                                 Logout
                             </a>
-                            '.csrf_field().'
+                            ' . csrf_field() . '
 
                         </form>')->addParentClass('nav-item')
                 )
                 ->addIf(
-                    ! auth()->check(),
+                    !auth()->check(),
                     Link::to(route('app.login'), 'Sign In')
                 )
                 ->addIf(
-                    ! auth()->check(),
+                    !auth()->check(),
                     Link::to(route('app.register'), 'Sign Up')
                 )
                 ->each(function (Link $link) {

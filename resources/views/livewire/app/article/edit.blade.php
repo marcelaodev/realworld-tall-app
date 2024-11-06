@@ -4,10 +4,12 @@
             <div class="container page">
                 <div class="row">
                     <div class="col-md-10 offset-md-1 col-xs-12">
+                        <x-validation-errors />
+
                         @if (session()->has('flash.banner'))
-                        <div class="alert alert-success">
-                            {{ session('flash.banner') }}
-                        </div>
+                            <div class="alert alert-success">
+                                {{ session('flash.banner') }}
+                            </div>
                         @endif
                         <form>
                             <fieldset class="form-group">
@@ -24,47 +26,45 @@
                             </fieldset>
                             <div class="row">
                                 @forelse ($tags as $tag)
-                                <div wire:key='{{ $tag->id }}' class="col-xs-4 col-md-2">
-                                    <fieldset class="form-group">
-                                        <label for="tag_{{ $tag->slug }}">
-                                            <input id="tag_{{ $tag->slug }}" class="form-checkbox" type="checkbox"
-                                                name="tag" value="{{ $tag->id }}" wire:model='article_tags' />
-                                            {{ $tag->name }}
-                                        </label>
-                                    </fieldset>
-                                </div>
+                                    <div wire:key='{{ $tag->id }}' class="col-xs-4 col-md-2">
+                                        <fieldset class="form-group">
+                                            <label for="tag_{{ $tag->slug }}">
+                                                <input id="tag_{{ $tag->slug }}" class="form-checkbox" type="checkbox"
+                                                    name="tag" value="{{ $tag->id }}" wire:model='article_tags' />
+                                                {{ $tag->name }}
+                                            </label>
+                                        </fieldset>
+                                    </div>
                                 @empty
 
                                 @endforelse
                             </div>
                             <fieldset class="form-group">
                                 @if (session()->has('message-tag'))
-                                <div class="alert alert-success">
-                                    {{ session('message-tag') }}
-                                </div>
+                                    <div class="alert alert-success">
+                                        {{ session('message-tag') }}
+                                    </div>
                                 @endif
-                                <input type="text" class="form-control" placeholder="Enter new tags" wire:model='tag'>
-                                <button type="button" wire:click="createTag">Create Tag</button>
+                                <input type="text" class="form-control" placeholder="Enter new tag" wire:model='tag'>
+                                <button class="btn btn-secondary my-2" type="button" wire:click="createTag">Create
+                                    Tag</button>
                             </fieldset>
 
-                <button class="btn btn-lg pull-xs-right btn-primary" type="button" wire:click='saveArticle'>
-                    Save Article
-                </button>
+                            <button class="btn btn-lg pull-xs-right btn-primary mx-1" type="button"
+                                wire:click='saveArticle'>
+                                Save Article
+                            </button>
+                            <a class="btn btn-lg pull-xs-right btn-secondary mx-1"
+                                href="{{ route('front.article.show', ['article' => $article->slug]) }}">
+                                Cancel
+                            </a>
 
-                <button class="btn btn-lg pull-xs-right btn-danger" type="button" wire:click='deleteArticle'>
-                    Delete Article
-                </button>
+                        </form>
+                    </div>
+                </div>
 
-                <a class="btn btn-lg pull-xs-right btn-secondary"
-                    href="{{ route('front.article.show',['article'=>$article->slug]) }}">
-                    View Article
-                </a>
-
-                </form>
             </div>
-
         </div>
     </div>
-</div>
 </div>
 </div>

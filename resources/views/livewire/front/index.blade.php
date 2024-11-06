@@ -11,11 +11,19 @@
             </div>
         </div>
 
+        @if (session()->has('flash.banner'))
+            <div class="container">
+                <div class="alert alert-success">
+                    {{ session('flash.banner') }}
+                </div>
+            </div>
+        @endif
+
         <div class="container page">
             <div class="row">
 
                 <div class="col-md-9">
-                    <div class="feed-toggle">
+                    <div class="feed-toggle d-inline-block">
                         <ul class="nav nav-pills outline-active">
                             @auth
                                 <li class="nav-item">
@@ -56,7 +64,9 @@
                             </a>
                         </div>
                     @empty
-                        <div>No articles found. Why don't you start following someone?</div>
+                        <div class="article-preview">
+                        </div>
+                        <div>No articles found.</div>
                     @endforelse
 
                 </div>

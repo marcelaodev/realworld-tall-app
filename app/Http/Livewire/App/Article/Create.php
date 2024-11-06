@@ -17,6 +17,7 @@ class Create extends Component
     public function mount()
     {
         $this->article = new \App\Models\Article();
+        $this->article->description = "";
 
         SEOTools::setTitle('Create new article', false);
         SEOTools::setDescription('New article created here.');
@@ -47,7 +48,7 @@ class Create extends Component
 
         session()->flash('flash.banner', 'Your article has been published!');
 
-        return redirect()->route('app.article.edit', ['article' => $this->article->id]);
+        return redirect()->route('front.article.show', ['article' => $this->article->slug]);
     }
 
     public function createTag()
@@ -55,14 +56,14 @@ class Create extends Component
         $slug = Str::slug($this->tag);
         $tag = \App\Models\Tag::where('slug', '=', $slug)->first();
         if ($tag) {
-            session()->flash('message-tag', 'Tag has existed.');
+            session()->flash('message-tag', 'Tag already exists.');
 
             return;
         }
 
         $this->validate(['tag' => ['required']]);
 
-        if (! empty($this->tag)) {
+        if (!empty($this->tag)) {
             \App\Models\Tag::create(['name' => $this->tag]);
 
             $this->reset('tag');
