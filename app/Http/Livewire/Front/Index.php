@@ -2,14 +2,13 @@
 
 namespace App\Http\Livewire\Front;
 
-use App\Models\User;
 use Artesaos\SEOTools\Facades\SEOTools;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
 class Index extends Component
 {
     public $viewingPrivateFeed = false;
+
     public $articles;
 
     public function mount()
@@ -33,7 +32,7 @@ class Index extends Component
             }))->get();
         }
 
-        if (!$this->viewingPrivateFeed) {
+        if (! $this->viewingPrivateFeed) {
             $this->articles = \App\Models\Article::with(['author'])->orderBy('created_at', 'DESC')->get();
         }
     }
@@ -41,7 +40,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.front.index', [
-            'tags' => \App\Models\Tag::all()
+            'tags' => \App\Models\Tag::all(),
         ]);
     }
 }

@@ -30,7 +30,7 @@ class Register extends Component
                     ->mixedCase()
                     ->numbers()
                     ->symbols()
-                    ->uncompromised()
+                    ->uncompromised(),
             ],
         ];
     }

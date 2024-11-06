@@ -56,24 +56,24 @@ class AppServiceProvider extends ServiceProvider
                 )
                 ->addIf(
                     auth()->check(),
-                    Html::raw('<form id="logout" method="POST" action="' . route('logout') . '">
+                    Html::raw('<form id="logout" method="POST" action="'.route('logout').'">
                             <a href="#" class="nav-link" onclick="event.preventDefault();this.closest(`form`).submit()">
                                 Logout
                             </a>
-                            ' . csrf_field() . '
+                            '.csrf_field().'
 
                         </form>')->addParentClass('nav-item')
                 )
                 ->addIf(
-                    !auth()->check(),
+                    ! auth()->check(),
                     Link::to(route('app.login'), 'Sign In')
                 )
                 ->addIf(
-                    !auth()->check(),
+                    ! auth()->check(),
                     Link::to(route('app.register'), 'Sign Up')
                 )
                 ->each(function (Link $link) {
-                    return  $link->addParentClass('nav-item');
+                    return $link->addParentClass('nav-item');
                 })
                 ->each(function (Link $link) {
                     return $link->addClass('nav-link');

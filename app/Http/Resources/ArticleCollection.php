@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Support\Str;
 
 class ArticleCollection extends ResourceCollection
 {

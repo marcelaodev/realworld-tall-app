@@ -10,7 +10,7 @@ class Login extends Component
 {
     public $credentials = [
         'email' => '',
-        'password' => ''
+        'password' => '',
     ];
 
     protected $rules = [

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,13 +25,11 @@ Route::name('article')
         Route::get('articles', [\App\Http\Controllers\Api\ArticleController::class, 'index']);
     });
 
-
 Route::get('tags', [\App\Http\Controllers\Api\TagController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])
     ->group(function () {
     });
-
 
 Route::get('article/', function ($id) {
 });

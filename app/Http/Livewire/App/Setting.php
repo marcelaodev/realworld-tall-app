@@ -39,7 +39,7 @@ class Setting extends Component
                     ->mixedCase()
                     ->numbers()
                     ->symbols()
-                    ->uncompromised()
+                    ->uncompromised(),
             ],
             'user.image' => ['required'],
             'user.bio' => ['string'],

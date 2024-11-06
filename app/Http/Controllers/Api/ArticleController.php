@@ -15,10 +15,10 @@ class ArticleController extends Controller
     {
         $findByAuthor = false;
         $user = new \App\Models\User();
-        if ($request->has('author') && !$request->isNotFilled('author')) {
+        if ($request->has('author') && ! $request->isNotFilled('author')) {
             $findByAuthor = true;
             $user = \App\Models\User::firstWhere('username', $request->get('author'));
-            if (!$user) {
+            if (! $user) {
                 throw ValidationException::withMessages(['username' => 'Username not found']);
             }
         }
@@ -27,7 +27,7 @@ class ArticleController extends Controller
             Article::with(['author', 'tags'])
                 ->when(
                     $findByAuthor,
-                    function (Builder $query) use ($request, $user) {
+                    function (Builder $query) use ($user) {
                         return $query->where('user_id', '=', $user->id);
                     }
                 )

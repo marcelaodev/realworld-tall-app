@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAcquaintancesFriendshipTable extends Migration
 {
-
     public function up()
     {
 

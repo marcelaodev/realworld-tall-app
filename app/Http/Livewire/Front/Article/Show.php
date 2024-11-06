@@ -8,11 +8,13 @@ use Livewire\Component;
 class Show extends Component
 {
     public $article;
+
     public $user;
+
     public $comment = '';
 
     protected $rules = [
-        'comment' => ['required', 'string']
+        'comment' => ['required', 'string'],
     ];
 
     public function mount(\App\Models\Article $article)

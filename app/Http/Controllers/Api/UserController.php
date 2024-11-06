@@ -13,6 +13,7 @@ class UserController extends Controller
     {
         $user = User::find(auth()->id());
         $user->token = $request->bearerToken();
+
         return new UserResource($user);
     }
 

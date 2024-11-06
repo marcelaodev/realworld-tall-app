@@ -3,13 +3,15 @@
 namespace App\Http\Livewire\App\Article;
 
 use Artesaos\SEOTools\Facades\SEOTools;
-use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 class Create extends Component
 {
     public \App\Models\Article $article;
+
     public $tag;
+
     public $article_tags = [];
 
     public function mount()
@@ -29,7 +31,7 @@ class Create extends Component
     public function render()
     {
         return view('livewire.app.article.create', [
-            'tags' => \App\Models\Tag::all()
+            'tags' => \App\Models\Tag::all(),
         ]);
     }
 
@@ -54,12 +56,13 @@ class Create extends Component
         $tag = \App\Models\Tag::where('slug', '=', $slug)->first();
         if ($tag) {
             session()->flash('message-tag', 'Tag has existed.');
+
             return;
         }
 
         $this->validate(['tag' => ['required']]);
 
-        if (!empty($this->tag)) {
+        if (! empty($this->tag)) {
             \App\Models\Tag::create(['name' => $this->tag]);
 
             $this->reset('tag');
