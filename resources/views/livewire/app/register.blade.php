@@ -17,6 +17,10 @@
                                 wire:model="credentials.name" autofocus>
                         </fieldset>
                         <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="text" placeholder="Your User Name"
+                                wire:model="credentials.username" autofocus>
+                        </fieldset>
+                        <fieldset class="form-group">
                             <input class="form-control form-control-lg" type="email" placeholder="Email"
                                 wire:model='credentials.email'>
                         </fieldset>

@@ -49,13 +49,12 @@ class Register extends Component
     {
         $this->validate();
 
-        $user = \App\Models\User::create();
-        $user->name = $this->credentials['name'];
-        $user->username = $this->credentials['username'];
-        $user->password = $this->credentials['password'];
-        $user->email = $this->credentials['email'];
-
-        $user->save();
+        $user = \App\Models\User::create([
+            'name' => $this->credentials['name'],
+            'username' => $this->credentials['username'],
+            'password' => $this->credentials['password'],
+            'email' => $this->credentials['email'],
+        ]);
 
         Auth::loginUsingId($user->id);
 
