@@ -18,8 +18,6 @@ Route::name('front.')->group(function () {
 
     Route::get('article/{article:slug}', \App\Http\Livewire\Front\Article\Show::class)->name('article.show');
 
-    Route::get('tag/{tag:slug}', \App\Http\Livewire\Front\Tag\Show::class)->name('tag.show');
-
     Route::get('profile/{user:username}', \App\Http\Livewire\Front\User\Show::class)->name('user.show');
 });
 

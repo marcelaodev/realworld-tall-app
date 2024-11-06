@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire\Front;
 
+use App\Models\Tag;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Livewire\Component;
 
 class Index extends Component
 {
     public $viewingPrivateFeed = false;
+
+    public $viewingTag = '';
+    public $viewingTagID = '';
 
     public $articles;
 
@@ -22,6 +26,9 @@ class Index extends Component
 
     public function updatedViewingPrivateFeed()
     {
+        $this->viewingTag = '';
+        $this->viewingTagID = '';
+
         if ($this->viewingPrivateFeed) {
             $user = \App\Models\User::find(auth()->id());
 
@@ -32,8 +39,20 @@ class Index extends Component
             }))->get();
         }
 
-        if (! $this->viewingPrivateFeed) {
+        if (!$this->viewingPrivateFeed) {
             $this->articles = \App\Models\Article::with(['author'])->orderBy('created_at', 'DESC')->get();
+        }
+    }
+
+    public function updatedViewingTagID()
+    {
+        if ($this->viewingTagID != '') {
+            $tag = Tag::find($this->viewingTagID);
+            $this->articles = $tag->articles;
+            $this->viewingTag = $tag->name;
+
+            SEOTools::setTitle("{$this->viewingTag} | Conduit X Ricardo Sawir", false);
+            SEOTools::setDescription($this->viewingTag);
         }
     }
 
