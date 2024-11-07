@@ -42,7 +42,7 @@ class Show extends Component
 
         $commenter = \App\Models\User::find(auth()->id());
 
-        $comment = new \App\Models\Comment();
+        $comment = new \App\Models\Comment;
         $comment->article_id = $this->article->id;
         $comment->user_id = $commenter->id;
         $comment->body = $this->comment;
@@ -88,6 +88,6 @@ class Show extends Component
 
         session()->flash('flash.banner', 'Successfully deleted your article.');
 
-        return redirect()->route('front.index');
+        return $this->redirect(route('front.index'), navigate: true);
     }
 }

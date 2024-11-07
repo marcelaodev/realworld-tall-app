@@ -9,9 +9,9 @@ use Multicaret\Acquaintances\Traits\CanBeFavorited;
 
 class Article extends Model
 {
+    use CanBeFavorited;
     use HasFactory;
     use Sluggable;
-    use CanBeFavorited;
 
     public function sluggable(): array
     {

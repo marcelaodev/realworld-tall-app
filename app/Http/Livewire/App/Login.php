@@ -33,7 +33,7 @@ class Login extends Component
         $this->validate();
 
         if (Auth::attempt($this->credentials)) {
-            return redirect()->intended(route('front.index'));
+            return $this->redirect(route('front.index'), navigate: true);
         }
 
         $this->addError('error', 'Wrong email or password');

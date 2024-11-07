@@ -59,6 +59,6 @@ class Register extends Component
 
         Auth::loginUsingId($user->id);
 
-        return redirect()->route('front.index');
+        return $this->redirect(route('front.index'), navigate: true);
     }
 }

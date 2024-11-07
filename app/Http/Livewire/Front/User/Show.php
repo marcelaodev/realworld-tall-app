@@ -21,7 +21,7 @@ class Show extends Component
             $this->articles = $this->user->favorites(\App\Models\Article::class)->with(['author'])->get();
         }
 
-        if (!$this->viewingFavoriteArticles) {
+        if (! $this->viewingFavoriteArticles) {
             $this->articles = \App\Models\Article::where('user_id', '=', $this->user->id)->with(['author'])->get();
         }
     }

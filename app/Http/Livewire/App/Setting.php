@@ -73,6 +73,6 @@ class Setting extends Component
 
         session()->flash('flash.banner', 'Your settings has been saved');
 
-        return redirect()->route('front.user.show', ['user' => $user->username]);
+        return $this->redirect(route('front.user.show', ['user' => $user->username]), navigate: true);
     }
 }

@@ -14,7 +14,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $findByAuthor = false;
-        $user = new \App\Models\User();
+        $user = new \App\Models\User;
         if ($request->has('author') && ! $request->isNotFilled('author')) {
             $findByAuthor = true;
             $user = \App\Models\User::firstWhere('username', $request->get('author'));

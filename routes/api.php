@@ -28,8 +28,6 @@ Route::name('article')
 Route::get('tags', [\App\Http\Controllers\Api\TagController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])
-    ->group(function () {
-    });
+    ->group(function () {});
 
-Route::get('article/', function ($id) {
-});
+Route::get('article/', function ($id) {});

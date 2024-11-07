@@ -27,7 +27,7 @@
     <nav class="navbar navbar-light">
         <div class="container">
             <a class="navbar-brand" wire:navigate href="{{ route('front.index') }}">conduit</a>
-            {!! Menu::app() !!}
+            <livewire:menu />
         </div>
     </nav>
     {{ $slot }}

@@ -11,6 +11,7 @@ class Index extends Component
     public $viewingPrivateFeed = false;
 
     public $viewingTag = '';
+
     public $viewingTagID = '';
 
     public $articles;
@@ -39,7 +40,7 @@ class Index extends Component
             }))->get();
         }
 
-        if (!$this->viewingPrivateFeed) {
+        if (! $this->viewingPrivateFeed) {
             $this->articles = \App\Models\Article::with(['author'])->orderBy('created_at', 'DESC')->get();
         }
     }

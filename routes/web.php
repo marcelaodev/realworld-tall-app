@@ -21,10 +21,6 @@ Route::name('front.')->group(function () {
     Route::get('profile/{user:username}', \App\Http\Livewire\Front\User\Show::class)->name('user.show');
 });
 
-Route::post('logout', \App\Http\Controllers\Auth\LogoutCurrentSession::class)
-    ->middleware(['auth'])
-    ->name('logout');
-
 Route::prefix('app')
     ->name('app.')
     ->group(function () {

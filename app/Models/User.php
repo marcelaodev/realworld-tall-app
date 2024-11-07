@@ -12,10 +12,10 @@ use Multicaret\Acquaintances\Traits\CanFollow;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
-    use CanFollow, CanBeFollowed;
+    use CanBeFollowed, CanFollow;
     use CanFavorite;
     use HasApiTokens;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.

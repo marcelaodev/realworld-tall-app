@@ -18,7 +18,6 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.5",
         "multicaret/laravel-acquaintances": "^3.5",
-        "spatie/laravel-menu": "^4.1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
