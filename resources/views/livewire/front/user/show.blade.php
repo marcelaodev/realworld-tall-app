@@ -12,7 +12,8 @@
                             {{ $user->bio }}
                         </p>
                         @guest
-                            <a href="{{ route('app.login') }}" class="btn btn-sm btn-outline-secondary action-btn">
+                            <a wire:navigate href="{{ route('app.login') }}"
+                                class="btn btn-sm btn-outline-secondary action-btn">
                                 <i class="ion-plus-round"></i>
                                 &nbsp;
                                 Follow <span class="counter">({{ intval($user->followersCountReadable()) }})</span>
@@ -70,16 +71,19 @@
                     @forelse ($articles as $article)
                         <div class="article-preview">
                             <div class="article-meta">
-                                <a href="{{ route('front.user.show', ['user' => $article->author->username]) }}"><img
+                                <a wire:navigate
+                                    href="{{ route('front.user.show', ['user' => $article->author->username]) }}"><img
                                         src="{{ $article->author->image }}" /></a>
                                 <div class="info">
-                                    <a href="{{ route('front.user.show', ['user' => $article->author->username]) }}"
+                                    <a wire:navigate
+                                        href="{{ route('front.user.show', ['user' => $article->author->username]) }}"
                                         class="author">{{ $article->author->name }}</a>
                                     <span class="date">{{ $article->created_at }}</span>
                                 </div>
 
                             </div>
-                            <a href="{{ route('front.article.show', ['article' => $article->slug]) }}" class="preview-link">
+                            <a wire:navigate href="{{ route('front.article.show', ['article' => $article->slug]) }}"
+                                class="preview-link">
                                 <h1>{{ $article->title }}</h1>
                                 <p>{{ $article->description }}</p>
                                 <span>Read more...</span>

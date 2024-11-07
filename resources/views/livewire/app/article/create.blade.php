@@ -7,15 +7,15 @@
                     <form>
                         <fieldset>
                             <fieldset class="form-group">
-                                <input wire:model='article.title' type="text" class="form-control form-control-lg"
+                                <input wire:model.live='article.title' type="text" class="form-control form-control-lg"
                                     placeholder="Article Title">
                             </fieldset>
                             <fieldset class="form-group">
-                                <input wire:model='article.description' type="text" class="form-control"
+                                <input wire:model.live='article.description' type="text" class="form-control"
                                     placeholder="What's this article about?">
                             </fieldset>
                             <fieldset class="form-group">
-                                <textarea wire:model='article.body' class="form-control" rows="8"
+                                <textarea wire:model.live='article.body' class="form-control" rows="8"
                                     placeholder="Write your article (in markdown)"></textarea>
                             </fieldset>
                             <div class="row">
@@ -24,7 +24,7 @@
                                         <fieldset class="form-group">
                                             <label for="tag_{{ $tag->slug }}">
                                                 <input id="tag_{{ $tag->slug }}" class="form-checkbox" type="checkbox"
-                                                    name="tag" value="{{ $tag->id }}" wire:model='article_tags' />
+                                                    name="tag" value="{{ $tag->id }}" wire:model.live='article_tags' />
                                                 {{ $tag->name }}
                                             </label>
                                         </fieldset>
@@ -39,7 +39,8 @@
                                         {{ session('message-tag') }}
                                     </div>
                                 @endif
-                                <input type="text" class="form-control" placeholder="Enter new tag" wire:model="tag">
+                                <input type="text" class="form-control" placeholder="Enter new tag"
+                                    wire:model.live="tag">
                                 <button class="btn btn-secondary my-2" type="button" wire:click="createTag">Create
                                     Tag</button>
                                 <div class="tag-list"></div>
@@ -47,7 +48,8 @@
                             <button class="btn btn-lg pull-xs-right btn-primary" type="button" wire:click='saveArticle'>
                                 Publish Article
                             </button>
-                            <a class="btn btn-lg pull-xs-right btn-secondary mx-1" href="{{ route('front.index') }}">
+                            <a wire:navigate class="btn btn-lg pull-xs-right btn-secondary mx-1"
+                                href="{{ route('front.index') }}">
                                 Cancel
                             </a>
                         </fieldset>

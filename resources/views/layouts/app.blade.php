@@ -26,14 +26,14 @@
 <body>
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('front.index') }}">conduit</a>
+            <a class="navbar-brand" wire:navigate href="{{ route('front.index') }}">conduit</a>
             {!! Menu::app() !!}
         </div>
     </nav>
     {{ $slot }}
     <footer>
         <div class="container">
-            <a href="{{ route('front.index') }}" class="logo-font">conduit</a>
+            <a wire:navigate href="{{ route('front.index') }}" class="logo-font">conduit</a>
             <span class="attribution">
                 An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design
                 licensed under MIT. Implementation by <a href="https://github.com/sawirricardo" target="_blank"
@@ -42,7 +42,7 @@
         </div>
     </footer>
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    @stack('scripts')
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script> -->
