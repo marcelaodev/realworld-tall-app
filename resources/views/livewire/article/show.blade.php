@@ -16,7 +16,7 @@
                     </div>
 
                     @guest
-                        <a wire:navigate href="{{ route('app.login') }}" class="btn btn-sm btn-outline-secondary">
+                        <a wire:navigate href="{{ route('login') }}" class="btn btn-sm btn-outline-secondary">
                             <i class="ion-plus-round"></i>
                             &nbsp;
                             Follow <span class="counter">({{ intval($article->author->followersCountReadable()) }})</span>
@@ -100,7 +100,7 @@
                     </div>
 
                     @guest
-                        <a wire:navigate href="{{ route('app.login') }}" class="btn btn-sm btn-outline-secondary">
+                        <a wire:navigate href="{{ route('login') }}" class="btn btn-sm btn-outline-secondary">
                             <i class="ion-plus-round"></i>
                             &nbsp;
                             Follow <span class="counter">({{ intval($article->author->followersCountReadable()) }})</span>

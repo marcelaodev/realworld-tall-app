@@ -7,15 +7,15 @@
                     <form>
                         <fieldset>
                             <fieldset class="form-group">
-                                <input wire:model.live='article.title' type="text" class="form-control form-control-lg"
+                                <input wire:model.live='title' type="text" class="form-control form-control-lg"
                                     placeholder="Article Title">
                             </fieldset>
                             <fieldset class="form-group">
-                                <input wire:model.live='article.description' type="text" class="form-control"
+                                <input wire:model.live='description' type="text" class="form-control"
                                     placeholder="What's this article about?">
                             </fieldset>
                             <fieldset class="form-group">
-                                <textarea wire:model.live='article.body' class="form-control" rows="8"
+                                <textarea wire:model.live='body' class="form-control" rows="8"
                                     placeholder="Write your article (in markdown)"></textarea>
                             </fieldset>
                             <div class="row">

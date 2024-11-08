@@ -63,6 +63,7 @@ class Setting extends Component
         $user->username = $this->user['username'];
         $user->bio = $this->user['bio'];
         $user->image = $this->user['image'];
+        $user->email = $this->user['email'];
 
         if (array_key_exists('password', $this->user)) {
             $user->password = Hash::make($this->user['password']);

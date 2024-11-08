@@ -12,7 +12,7 @@
                             {{ $user->bio }}
                         </p>
                         @guest
-                            <a wire:navigate href="{{ route('app.login') }}"
+                            <a wire:navigate href="{{ route('login') }}"
                                 class="btn btn-sm btn-outline-secondary action-btn">
                                 <i class="ion-plus-round"></i>
                                 &nbsp;

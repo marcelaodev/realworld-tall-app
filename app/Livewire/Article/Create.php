@@ -2,13 +2,20 @@
 
 namespace App\Livewire\Article;
 
+use App\Models\Article;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Create extends Component
 {
-    public \App\Models\Article $article;
+    public Article $article;
+
+    public $title;
+
+    public $body;
+
+    public $description;
 
     public $tag;
 
@@ -24,9 +31,9 @@ class Create extends Component
     }
 
     protected $rules = [
-        'article.title' => ['required', 'string'],
-        'article.body' => ['required', 'string'],
-        'article.description' => ['string'],
+        'title' => ['required', 'string'],
+        'body' => ['required', 'string'],
+        'description' => ['string'],
     ];
 
     public function render()
@@ -41,6 +48,9 @@ class Create extends Component
         $this->validate();
 
         $this->article->user_id = auth()->id();
+        $this->article->title = $this->title;
+        $this->article->body = $this->body;
+        $this->article->description = $this->description;
 
         $this->article->save();
 

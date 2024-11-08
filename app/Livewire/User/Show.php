@@ -2,8 +2,6 @@
 
 namespace App\Livewire\User;
 
-use App\Models\Article;
-use App\Models\User;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Livewire\Component;
 
@@ -20,19 +18,19 @@ class Show extends Component
     public function updatedViewingFavoriteArticles()
     {
         if ($this->viewingFavoriteArticles) {
-            $this->articles = $this->user->favorites(Article::class)->with(['author'])->get();
+            $this->articles = $this->user->favorites(\App\Models\Article::class)->with(['author'])->get();
         }
 
         if (!$this->viewingFavoriteArticles) {
-            $this->articles = Article::where('user_id', '=', $this->user->id)->with(['author'])->get();
+            $this->articles = \App\Models\Article::where('user_id', '=', $this->user->id)->with(['author'])->get();
         }
     }
 
-    public function mount(User $user)
+    public function mount(\App\Models\User $user)
     {
-        $this->articles = Article::where('user_id', '=', $this->user->id)->with(['author'])->get();
+        $this->articles = \App\Models\Article::where('user_id', '=', $this->user->id)->with(['author'])->get();
         $this->user = $user;
-        $this->loggedInUser = User::find(auth()->id());
+        $this->loggedInUser = \App\Models\User::find(auth()->id());
 
         SEOTools::setTitle($this->user['name'], false);
         SEOTools::setDescription($this->user['bio']);
@@ -43,4 +41,12 @@ class Show extends Component
         return view('livewire.user.show');
     }
 
+    public function followUser()
+    {
+        $this->loggedInUser = \App\Models\User::find(auth()->id());
+
+        $this->loggedInUser->toggleFollow($this->user);
+
+        $this->user = \App\Models\User::find($this->user->id);
+    }
 }

@@ -12,6 +12,12 @@ class Edit extends Component
 {
     public Article $article;
 
+    public $title;
+
+    public $body;
+
+    public $description;
+
     public $tag;
 
     public $article_tags = [];
@@ -19,6 +25,9 @@ class Edit extends Component
     public function mount(Article $article)
     {
         $this->article = $article;
+        $this->title = $article->title;
+        $this->body = $article->body;
+        $this->description = $article->description;
         $this->article_tags = $article->tags->map(function ($tag) {
             return $tag->id;
         });
@@ -28,10 +37,9 @@ class Edit extends Component
     }
 
     protected $rules = [
-        'article.title' => ['required', 'string'],
-        'article.body' => ['required', 'string'],
-        'article.description' => ['string'],
-        'article_tags' => [],
+        'title' => ['required', 'string'],
+        'body' => ['required', 'string'],
+        'description' => ['string'],
     ];
 
     public function render()
@@ -45,6 +53,9 @@ class Edit extends Component
     {
         $this->validate();
 
+        $this->article->title = $this->title;
+        $this->article->body = $this->body;
+        $this->article->description = $this->description;
         $this->article->save();
 
         $this->article->tags()->sync($this->article_tags);
