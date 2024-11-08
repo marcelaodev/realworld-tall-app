@@ -14,11 +14,11 @@
                     <form wire:submit='login'>
                         <fieldset class="form-group">
                             <input class="form-control form-control-lg" type="text" placeholder="Email"
-                                wire:model.live='credentials.email'>
+                                wire:model='credentials.email'>
                         </fieldset>
                         <fieldset class="form-group">
                             <input class="form-control form-control-lg" type="password" placeholder="Password"
-                                wire:model.live='credentials.password'>
+                                wire:model='credentials.password'>
                         </fieldset>
                         <button class="btn btn-lg btn-primary pull-xs-right">
                             Sign in

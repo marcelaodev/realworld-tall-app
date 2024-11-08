@@ -11,23 +11,23 @@
                     <form wire:submit='saveSetting'>
                         <fieldset>
                             <fieldset class="form-group">
-                                <input wire:model.live='user.image' class="form-control" type="text"
+                                <input wire:model='user.image' class="form-control" type="text"
                                     placeholder="URL of profile picture">
                             </fieldset>
                             <fieldset class="form-group">
-                                <input wire:model.live='user.name' class="form-control form-control-lg" type="text"
+                                <input wire:model='user.name' class="form-control form-control-lg" type="text"
                                     placeholder="Your Name">
                             </fieldset>
                             <fieldset class="form-group">
-                                <textarea wire:model.live='user.bio' class="form-control form-control-lg" rows="8"
+                                <textarea wire:model='user.bio' class="form-control form-control-lg" rows="8"
                                     placeholder="Short bio about you"></textarea>
                             </fieldset>
                             <fieldset class="form-group">
-                                <input wire:model.live='user.email' class="form-control form-control-lg" type="text"
+                                <input wire:model='user.email' class="form-control form-control-lg" type="text"
                                     placeholder="Email">
                             </fieldset>
                             <fieldset class="form-group">
-                                <input wire:model.live='user.password' class="form-control form-control-lg" type="password"
+                                <input wire:model='user.password' class="form-control form-control-lg" type="password"
                                     placeholder="Password">
                             </fieldset>
                             @if (session()->has('flash.banner'))

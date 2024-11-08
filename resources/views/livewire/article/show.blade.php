@@ -170,7 +170,7 @@
                         <x-validation-errors />
                         <form wire:submit='saveComment' class="card comment-form">
                             <div class="card-block">
-                                <textarea wire:model.live='comment' class="form-control" placeholder="Write a comment..."
+                                <textarea wire:model='comment' class="form-control" placeholder="Write a comment..."
                                     rows="3"></textarea>
                             </div>
                             <div class="card-footer">

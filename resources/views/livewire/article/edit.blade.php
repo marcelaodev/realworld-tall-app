@@ -13,15 +13,15 @@
                         @endif
                         <form>
                             <fieldset class="form-group">
-                                <input wire:model.live='title' type="text" class="form-control form-control-lg"
+                                <input wire:model='title' type="text" class="form-control form-control-lg"
                                     placeholder="Article Title">
                             </fieldset>
                             <fieldset class="form-group">
-                                <input wire:model.live='description' type="text" class="form-control"
+                                <input wire:model='description' type="text" class="form-control"
                                     placeholder="What's this article about?">
                             </fieldset>
                             <fieldset class="form-group">
-                                <textarea wire:model.live='body' class="form-control" rows="8"
+                                <textarea wire:model='body' class="form-control" rows="8"
                                     placeholder="Write your article (in markdown)"></textarea>
                             </fieldset>
                             <div class="row">
@@ -45,8 +45,7 @@
                                         {{ session('message-tag') }}
                                     </div>
                                 @endif
-                                <input type="text" class="form-control" placeholder="Enter new tag"
-                                    wire:model.live='tag'>
+                                <input type="text" class="form-control" placeholder="Enter new tag" wire:model='tag'>
                                 <button class="btn btn-secondary my-2" type="button" wire:click="createTag">Create
                                     Tag</button>
                             </fieldset>

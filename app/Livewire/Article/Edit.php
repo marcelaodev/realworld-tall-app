@@ -28,9 +28,12 @@ class Edit extends Component
         $this->title = $article->title;
         $this->body = $article->body;
         $this->description = $article->description;
-        $this->article_tags = $article->tags->map(function ($tag) {
-            return $tag->id;
-        });
+
+        if (!$article->tags->isEmpty()) {
+            $this->article_tags = $article->tags->map(function ($tag) {
+                return $tag->id;
+            });
+        }
 
         SEOTools::setTitle('Edit article', false);
         SEOTools::setDescription('Article is being edited.');

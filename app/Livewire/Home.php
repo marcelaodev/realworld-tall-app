@@ -50,7 +50,7 @@ class Home extends Component
     {
         if ($this->viewingTagID != '') {
             $tag = Tag::find($this->viewingTagID);
-            $this->articles = $tag->articles;
+            $this->articles = $tag->articles->sortByDesc(['created_at']);
             $this->viewingTag = $tag->name;
 
             SEOTools::setTitle("{$this->viewingTag} | Conduit X Ricardo Sawir", false);
