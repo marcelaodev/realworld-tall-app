@@ -27,7 +27,7 @@ Route::get('register', \App\Livewire\Register::class)
     ->middleware(['guest'])
     ->name('register');
 
-Route::get('settings', \App\Livewire\Setting::class)->name('setting');
+Route::get('settings', \App\Livewire\User\Setting::class)->name('user.setting');
 
 Route::name('article.')->group(function () {
     Route::get('article', \App\Livewire\Article\Create::class)->name('create');

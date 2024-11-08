@@ -12,14 +12,15 @@
                     <i class="ion-compose"></i>&nbsp;New Post
                 </a>
             </li>
-            <li class="nav-item  {{ $currentRouteName == 'user.show' ? 'active' : '' }}">
+            <li
+                class="nav-item  {{ $currentRouteName == 'user.show' && $currentRouteUsername === auth()->user()->username ? 'active' : '' }}">
                 <a class="nav-link" wire:navigate
                     href="{{ route('user.show', ['user' => auth()->user()?->username ?? 1]) }}">
                     <i class="ion-person"></i>&nbsp;Profile
                 </a>
             </li>
-            <li class="nav-item  {{ $currentRouteName == 'setting' ? 'active' : '' }}">
-                <a class="nav-link" wire:navigate href="{{ route('setting') }}">
+            <li class="nav-item  {{ $currentRouteName == 'user.setting' ? 'active' : '' }}">
+                <a class="nav-link" wire:navigate href="{{ route('user.setting') }}">
                     <i class="ion-gear-a"></i>&nbsp;Settings
                 </a>
             </li>

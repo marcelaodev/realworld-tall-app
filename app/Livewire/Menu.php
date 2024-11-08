@@ -11,9 +11,13 @@ class Menu extends Component
 {
     public $currentRouteName;
 
+    public $currentRouteUsername;
+
     public function mount()
     {
         $this->currentRouteName = Route::currentRouteName();
+        $this->currentRouteUsername = @Route::getCurrentRoute()->originalParameters()['user'];
+
     }
 
     public function render()

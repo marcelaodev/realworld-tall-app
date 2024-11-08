@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\User;
 
 use App\Models\User;
 use Artesaos\SEOTools\Facades\SEOTools;
@@ -49,7 +49,7 @@ class Setting extends Component
 
     public function render()
     {
-        return view('livewire.setting');
+        return view('livewire.user.setting');
     }
 
     public function saveSetting()
