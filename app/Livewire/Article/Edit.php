@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\App\Article;
+namespace App\Livewire\Article;
 
+use App\Models\Article;
+use App\Models\Tag;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Edit extends Component
 {
-    public \App\Models\Article $article;
+    public Article $article;
 
     public $tag;
 
     public $article_tags = [];
 
-    public function mount(\App\Models\Article $article)
+    public function mount(Article $article)
     {
         $this->article = $article;
         $this->article_tags = $article->tags->map(function ($tag) {
@@ -34,8 +36,8 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.app.article.edit', [
-            'tags' => \App\Models\Tag::all(),
+        return view('livewire.article.edit', [
+            'tags' => Tag::all(),
         ]);
     }
 
@@ -49,13 +51,13 @@ class Edit extends Component
 
         session()->flash('flash.banner', 'Your article has been saved!');
 
-        return $this->redirect(route('front.article.show', ['article' => $this->article->slug]), navigate: true);
+        return $this->redirect(route('article.show', ['article' => $this->article->slug]), navigate: true);
     }
 
     public function createTag()
     {
         $slug = Str::slug($this->tag);
-        $tag = \App\Models\Tag::where('slug', '=', $slug)->first();
+        $tag = Tag::where('slug', '=', $slug)->first();
         if ($tag) {
             session()->flash('message-tag', 'Tag has existed.');
 
@@ -64,8 +66,8 @@ class Edit extends Component
 
         $this->validate(['tag' => ['required']]);
 
-        if (! empty($this->tag)) {
-            \App\Models\Tag::create(['name' => $this->tag]);
+        if (!empty($this->tag)) {
+            Tag::create(['name' => $this->tag]);
 
             $this->reset('tag');
 

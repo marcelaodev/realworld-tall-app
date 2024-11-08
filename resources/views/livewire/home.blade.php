@@ -50,16 +50,15 @@
                         <div class="article-preview">
                             <div class="article-meta">
                                 <a wire:navigate
-                                    href="{{ route('front.user.show', ['user' => $article->author->username]) }}"><img
+                                    href="{{ route('user.show', ['user' => $article->author->username]) }}"><img
                                         src="{{ $article->author->image }}" /></a>
                                 <div class="info">
-                                    <a wire:navigate
-                                        href="{{ route('front.user.show', ['user' => $article->author->username]) }}"
+                                    <a wire:navigate href="{{ route('user.show', ['user' => $article->author->username]) }}"
                                         class="author">{{ $article->author->name }}</a>
                                     <span class="date">{{ $article->created_at }}</span>
                                 </div>
                             </div>
-                            <a wire:navigate href="{{ route('front.article.show', ['article' => $article->slug]) }}"
+                            <a wire:navigate href="{{ route('article.show', ['article' => $article->slug]) }}"
                                 class="preview-link">
                                 <h1>{{ $article->title }}</h1>
                                 <p>{{ $article->description }}</p>

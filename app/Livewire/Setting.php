@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\App;
+namespace App\Livewire;
 
+use App\Models\User;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -15,7 +16,7 @@ class Setting extends Component
     public function mount()
     {
         $userId = auth()->user()->getAuthIdentifier();
-        $this->user = \App\Models\User::find($userId)->toArray();
+        $this->user = User::find($userId)->toArray();
 
         SEOTools::setTitle('My setting', false);
     }
@@ -48,7 +49,7 @@ class Setting extends Component
 
     public function render()
     {
-        return view('livewire.app.setting');
+        return view('livewire.setting');
     }
 
     public function saveSetting()
@@ -56,7 +57,7 @@ class Setting extends Component
         $this->validate();
 
         $userId = auth()->user()->getAuthIdentifier();
-        $user = \App\Models\User::find($userId);
+        $user = User::find($userId);
 
         $user->name = $this->user['name'];
         $user->username = $this->user['username'];
@@ -73,6 +74,6 @@ class Setting extends Component
 
         session()->flash('flash.banner', 'Your settings has been saved');
 
-        return $this->redirect(route('front.user.show', ['user' => $user->username]), navigate: true);
+        return $this->redirect(route('user.show', ['user' => $user->username]), navigate: true);
     }
 }

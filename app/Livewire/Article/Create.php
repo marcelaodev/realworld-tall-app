@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\App\Article;
+namespace App\Livewire\Article;
 
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Str;
@@ -31,7 +31,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.app.article.create', [
+        return view('livewire.article.create', [
             'tags' => \App\Models\Tag::all(),
         ]);
     }
@@ -48,7 +48,7 @@ class Create extends Component
 
         session()->flash('flash.banner', 'Your article has been published!');
 
-        return $this->redirect(route('front.article.show', ['article' => $this->article->slug]), navigate: true);
+        return $this->redirect(route('article.show', ['article' => $this->article->slug]), navigate: true);
     }
 
     public function createTag()
@@ -63,7 +63,7 @@ class Create extends Component
 
         $this->validate(['tag' => ['required']]);
 
-        if (! empty($this->tag)) {
+        if (!empty($this->tag)) {
             \App\Models\Tag::create(['name' => $this->tag]);
 
             $this->reset('tag');

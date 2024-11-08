@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +30,6 @@ class Menu extends Component
 
         request()->session()->regenerateToken();
 
-        return $this->redirect(route('front.index'), navigate: true);
+        return $this->redirect(route('home'), navigate: true);
     }
 }

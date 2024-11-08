@@ -26,14 +26,14 @@
 <body>
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" wire:navigate href="{{ route('front.index') }}">conduit</a>
+            <a class="navbar-brand" wire:navigate href="{{ route('home') }}">conduit</a>
             <livewire:menu />
         </div>
     </nav>
     {{ $slot }}
     <footer>
         <div class="container">
-            <a wire:navigate href="{{ route('front.index') }}" class="logo-font">conduit</a>
+            <a wire:navigate href="{{ route('home') }}" class="logo-font">conduit</a>
             <span class="attribution">
                 An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design
                 licensed under MIT. Implementation by <a href="https://github.com/sawirricardo" target="_blank"

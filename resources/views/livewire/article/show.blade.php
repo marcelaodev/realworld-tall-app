@@ -7,10 +7,10 @@
                 <h1>{{ $article->title }}</h1>
 
                 <div class="article-meta">
-                    <a wire:navigate href="{{ route('front.user.show', ['user' => $article->author->username]) }}"><img
+                    <a wire:navigate href="{{ route('user.show', ['user' => $article->author->username]) }}"><img
                             src="{{ $article->author->image }}" /></a>
                     <div class="info">
-                        <a wire:navigate href="{{ route('front.user.show', ['user' => $article->author->username]) }}"
+                        <a wire:navigate href="{{ route('user.show', ['user' => $article->author->username]) }}"
                             class="author">{{ $article->author->name }}</a>
                         <span class="date">{{ $article->created_at }}</span>
                     </div>
@@ -61,7 +61,7 @@
                     @auth
                         @if ($article->author->id === auth()->user()->getAuthIdentifier())
                             <a wire:navigate class="btn btn-sm btn-outline-secondary"
-                                href="{{ route('app.article.edit', ['article' => $article->id]) }}">
+                                href="{{ route('article.edit', ['article' => $article->id]) }}">
                                 <i class="ion-edit"></i>
                                 Edit Article</a>
                             <button type="button" class="btn btn-sm btn-outline-danger" wire:click="deleteArticle"
@@ -91,10 +91,10 @@
 
             <div class="article-actions">
                 <div class="article-meta">
-                    <a wire:navigate href="{{ route('front.user.show', ['user' => $article->author->username]) }}"><img
+                    <a wire:navigate href="{{ route('user.show', ['user' => $article->author->username]) }}"><img
                             src="{{ $article->author->image }}" /></a>
                     <div class="info">
-                        <a wire:navigate href="{{ route('front.user.show', ['user' => $article->author->username]) }}"
+                        <a wire:navigate href="{{ route('user.show', ['user' => $article->author->username]) }}"
                             class="author">{{ $article->author->name }}</a>
                         <span class="date">{{ $article->created_at }}</span>
                     </div>
@@ -145,7 +145,7 @@
                     @auth
                         @if ($article->author->id === auth()->id())
                             <a wire:navigate class="btn btn-sm btn-outline-secondary"
-                                href="{{ route('app.article.edit', ['article' => $article->id]) }}">
+                                href="{{ route('article.edit', ['article' => $article->id]) }}">
                                 <i class="ion-edit"></i>
                                 Edit Article</a>
                             <button type="button" class="btn btn-sm btn-outline-danger" wire:click="deleteArticle"
@@ -184,7 +184,7 @@
                     @guest
                         <div class="card comment-form p-2">
                             <div class="card-block">
-                                <a wire:navigate href="{{ route('app.login') }}">Login</a> to comment this article.
+                                <a wire:navigate href="{{ route('login') }}">Login</a> to comment this article.
                             </div>
                         </div>
                     @endguest
@@ -199,13 +199,13 @@
                                 <div class="row">
                                     <div class="col-md-9 align-content-center">
                                         <a wire:navigate
-                                            href="{{ route('front.user.show', ['user' => $comment->author->username]) }}"
+                                            href="{{ route('user.show', ['user' => $comment->author->username]) }}"
                                             class="comment-author">
                                             <img src="{{ $comment->author->image }}" class="comment-author-img" />
                                         </a>
                                         &nbsp;
                                         <a wire:navigate
-                                            href="{{ route('front.user.show', ['user' => $comment->author->username]) }}"
+                                            href="{{ route('user.show', ['user' => $comment->author->username]) }}"
                                             class="comment-author">{{ $comment->author->name }}</a>
                                         <span class="date-posted">{{ $comment->created_at }}</span>
                                     </div>

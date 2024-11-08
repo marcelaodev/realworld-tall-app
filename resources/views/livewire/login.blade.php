@@ -6,7 +6,7 @@
                 <div class="col-md-6 offset-md-3 col-xs-12">
                     <h1 class="text-xs-center">Sign in</h1>
                     <p class="text-xs-center">
-                        <a wire:navigate href="{{ route('app.register') }}">Don't have an account?</a>
+                        <a wire:navigate href="{{ route('register') }}">Don't have an account?</a>
                     </p>
 
                     <x-validation-errors />

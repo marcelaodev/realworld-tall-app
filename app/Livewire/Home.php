@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Front;
+namespace App\Livewire;
 
+use App\Models\Article;
 use App\Models\Tag;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Livewire\Component;
 
-class Index extends Component
+class Home extends Component
 {
     public $viewingPrivateFeed = false;
 
@@ -59,8 +60,8 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.front.index', [
-            'tags' => \App\Models\Tag::all(),
+        return view('livewire.home', [
+            'tags' => Tag::all(),
         ]);
     }
 }

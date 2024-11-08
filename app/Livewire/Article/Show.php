@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Front\Article;
+namespace App\Livewire\Article;
 
+use App\Models\Article;
+use App\Models\Comment;
+use App\Models\User;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Livewire\Component;
 
@@ -17,14 +20,14 @@ class Show extends Component
         'comment' => ['required', 'string'],
     ];
 
-    public function mount(\App\Models\Article $article)
+    public function mount(Article $article)
     {
         $article->load(['author', 'comments']);
 
         $this->article = $article;
 
         if (auth()->check()) {
-            $this->user = \App\Models\User::find(auth()->id());
+            $this->user = User::find(auth()->id());
         }
 
         SEOTools::setTitle("{$article->title} | Conduit X Ricardo Sawir", false);
@@ -33,31 +36,33 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.front.article.show');
+        return view('livewire.article.show');
     }
 
     public function saveComment()
     {
         $this->validate();
 
-        $commenter = \App\Models\User::find(auth()->id());
+        $commenter = User::find(auth()->id());
 
-        $comment = new \App\Models\Comment;
+        $comment = new Comment();
         $comment->article_id = $this->article->id;
         $comment->user_id = $commenter->id;
         $comment->body = $this->comment;
         $comment->save();
 
-        $this->article = \App\Models\Article::find($this->article->id);
+        $this->article = Article::find($this->article->id);
         $this->comment = '';
+
+        session()->flash('flash.banner', 'Successfully posted your comment.');
     }
 
     public function deleteComment($id)
     {
-        $comment = \App\Models\Comment::findOrFail($id);
+        $comment = Comment::findOrFail($id);
         $comment->delete();
 
-        $this->article = \App\Models\Article::find($this->article->id);
+        $this->article = Article::find($this->article->id);
 
         session()->flash('flash.banner', 'Successfully deleted your comment.');
     }
@@ -73,11 +78,11 @@ class Show extends Component
 
     public function favoriteArticle()
     {
-        $user = \App\Models\User::find(auth()->id());
+        $user = User::find(auth()->id());
 
         $user->toggleFavorite($this->article);
 
-        $this->article = \App\Models\Article::find($this->article->id);
+        $this->article = Article::find($this->article->id);
     }
 
     public function deleteArticle()
@@ -88,6 +93,6 @@ class Show extends Component
 
         session()->flash('flash.banner', 'Successfully deleted your article.');
 
-        return $this->redirect(route('front.index'), navigate: true);
+        return $this->redirect(route('home'), navigate: true);
     }
 }

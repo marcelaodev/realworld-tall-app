@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\App;
+namespace App\Livewire;
 
+use App\Models\User;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Hash;
 use Illuminate\Support\Facades\Auth;
@@ -43,14 +44,14 @@ class Register extends Component
 
     public function render()
     {
-        return view('livewire.app.register');
+        return view('livewire.register');
     }
 
     public function register()
     {
         $this->validate();
 
-        $user = \App\Models\User::create([
+        $user = User::create([
             'name' => $this->credentials['name'],
             'username' => $this->credentials['username'],
             'password' => Hash::make($this->credentials['password']),
@@ -59,6 +60,6 @@ class Register extends Component
 
         Auth::loginUsingId($user->id);
 
-        return $this->redirect(route('front.index'), navigate: true);
+        return $this->redirect(route('home'), navigate: true);
     }
 }

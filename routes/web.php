@@ -13,30 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('front.')->group(function () {
-    Route::get('/', \App\Http\Livewire\Front\Index::class)->name('index');
+Route::get('/', \App\Livewire\Home::class)->name('home');
 
-    Route::get('article/{article:slug}', \App\Http\Livewire\Front\Article\Show::class)->name('article.show');
+Route::get('article/{article:slug}', \App\Livewire\Article\Show::class)->name('article.show');
 
-    Route::get('profile/{user:username}', \App\Http\Livewire\Front\User\Show::class)->name('user.show');
+Route::get('profile/{user:username}', \App\Livewire\User\Show::class)->name('user.show');
+
+Route::get('login', \App\Livewire\Login::class)
+    ->middleware(['guest'])
+    ->name('login');
+
+Route::get('register', \App\Livewire\Register::class)
+    ->middleware(['guest'])
+    ->name('register');
+
+Route::get('settings', \App\Livewire\Setting::class)->name('setting');
+
+Route::name('article.')->group(function () {
+    Route::get('article', \App\Livewire\Article\Create::class)->name('create');
+
+    Route::get('article/edit/{article}', \App\Livewire\Article\Edit::class)->name('edit');
 });
-
-Route::prefix('app')
-    ->name('app.')
-    ->group(function () {
-        Route::get('login', \App\Http\Livewire\App\Login::class)
-            ->middleware(['guest'])
-            ->name('login');
-
-        Route::get('register', \App\Http\Livewire\App\Register::class)
-            ->middleware(['guest'])
-            ->name('register');
-
-        Route::get('settings', \App\Http\Livewire\App\Setting::class)->name('setting');
-
-        Route::name('article.')->group(function () {
-            Route::get('article/create', \App\Http\Livewire\App\Article\Create::class)->name('create');
-
-            Route::get('article/edit/{article}', \App\Http\Livewire\App\Article\Edit::class)->name('edit');
-        });
-    });

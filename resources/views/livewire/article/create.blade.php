@@ -1,17 +1,11 @@
 <div>
-    <div>
-        <div class="editor-page">
-            <div class="container page">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1 col-xs-12">
-                        <x-validation-errors />
-
-                        @if (session()->has('flash.banner'))
-                            <div class="alert alert-success">
-                                {{ session('flash.banner') }}
-                            </div>
-                        @endif
-                        <form>
+    <div class="editor-page">
+        <div class="container page">
+            <div class="row">
+                <div class="col-md-10 offset-md-1 col-xs-12">
+                    <x-validation-errors />
+                    <form>
+                        <fieldset>
                             <fieldset class="form-group">
                                 <input wire:model.live='article.title' type="text" class="form-control form-control-lg"
                                     placeholder="Article Title">
@@ -45,26 +39,24 @@
                                         {{ session('message-tag') }}
                                     </div>
                                 @endif
-                                <input type="text" class="form-control" placeholder="Enter new tag" wire:model.live='tag'>
+                                <input type="text" class="form-control" placeholder="Enter new tag"
+                                    wire:model.live="tag">
                                 <button class="btn btn-secondary my-2" type="button" wire:click="createTag">Create
                                     Tag</button>
+                                <div class="tag-list"></div>
                             </fieldset>
-
-                            <button class="btn btn-lg pull-xs-right btn-primary mx-1" type="button"
-                                wire:click='saveArticle'>
-                                Save Article
+                            <button class="btn btn-lg pull-xs-right btn-primary" type="button" wire:click='saveArticle'>
+                                Publish Article
                             </button>
                             <a wire:navigate class="btn btn-lg pull-xs-right btn-secondary mx-1"
-                                href="{{ route('front.article.show', ['article' => $article->slug]) }}">
+                                href="{{ route('home') }}">
                                 Cancel
                             </a>
-
-                        </form>
-                    </div>
+                        </fieldset>
+                    </form>
                 </div>
 
             </div>
         </div>
     </div>
-</div>
 </div>

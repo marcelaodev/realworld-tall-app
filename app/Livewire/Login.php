@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\App;
+namespace App\Livewire;
 
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +25,7 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.app.login');
+        return view('livewire.login');
     }
 
     public function login()
@@ -33,7 +33,7 @@ class Login extends Component
         $this->validate();
 
         if (Auth::attempt($this->credentials)) {
-            return $this->redirect(route('front.index'), navigate: true);
+            return $this->redirect(route('home'), navigate: true);
         }
 
         $this->addError('error', 'Wrong email or password');
